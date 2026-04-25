@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505;
+    color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+body.fade-out {
+    animation: fadeOut 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-track {
+    background: #050505;
+}
+body::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+/* Header & Nav Glassmorphism */
+header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.titulo-header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #a0a0a0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Sections */
+section {
+    padding: 60px 5%;
+}
+
+h2, h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.men-category {
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+/* Magazine / Hero */
+.papermagazine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.papermagazine img {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.7s ease, filter 0.7s ease;
+    filter: brightness(0.8) grayscale(20%);
+}
+
+.papermagazine img:hover {
+    transform: scale(1.02);
+    filter: brightness(1) grayscale(0%);
+}
+
+/* Products Grid */
+main {
+    padding: 40px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Override for non-product pages */
+main.text-page {
+    display: block;
+    text-align: center;
+}
+
+main > h1 {
+    width: 100%;
+}
+
+.tarjeta-producto {
+    width: 320px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.galeria {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background: #111;
+}
+
+.galeria img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease;
+}
+
+.imagen-hover {
+    opacity: 0;
+}
+
+.tarjeta-producto:hover .galeria img {
+    transform: scale(1.05);
+}
+
+.galeria:hover .imagen-hover {
+    opacity: 1;
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #e0e0e0;
+}
+
+.card-body p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+/* Footer */
+footer {
+    background: #020202;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 5%;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-redes a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 15px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.footer-redes a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.footer-copy {
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* Contact & About Forms */
+.contact-form, .contact-directly {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.contact-form button, .contact-form input[type="submit"] {
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover, .contact-form input[type="submit"]:hover {
+    background: #ddd;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.contact-directly a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #aaa;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
