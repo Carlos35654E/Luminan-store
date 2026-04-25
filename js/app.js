@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, setDoc, serverTimestamp, doc, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAh5hB5JCG344mGroQgjrcTw9TxABIdoRA",
@@ -10,6 +10,9 @@ const firebaseConfig = {
   appId: "1:995190345802:web:cc62ccc49ee3ae33f7d6b3",
   measurementId: "G-L2N79RLX6W"
 };
+
+// recuerda tener estos imports arriba con los demás
+// import { doc, setDoc, collection, getCountFromServer, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -29,14 +32,21 @@ async function enviarMensaje() {
     btn.innerText = 'Enviando...';
 
     try {
-        await addDoc(collection(db, "mensajes"), {
+        // contamos cuántos hay y creamos tu id facherito
+        const coll = collection(db, "mensajes");
+        const snapshot = await getCountFromServer(coll);
+        const nuevoNumero = snapshot.data().count + 1;
+        const idPersonalizado = "Mensaje " + nuevoNumero;
+
+        // usamos setDoc con doc para forzar el nombre
+        await setDoc(doc(db, "mensajes", idPersonalizado), {
             nombre: name.value,
             correo: mail.value,
             mensaje: message.value,
             fecha: serverTimestamp()
         });
 
-        btn.innerText = '¡Mensaje Enviado!';
+        btn.innerText = 'Mensaje Enviado'; 
         
         name.value = '';
         mail.value = '';
@@ -49,7 +59,7 @@ async function enviarMensaje() {
 
     } catch (e) {
         console.error("Error al enviar: ", e);
-        alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo.');
+        alert('Hubo un error al enviar el mensaje, intentalo de nuevo');
         btn.disabled = false;
         btn.innerText = 'Enviar';
     }
