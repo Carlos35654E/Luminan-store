@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, setDoc, serverTimestamp, doc, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAh5hB5JCG344mGroQgjrcTw9TxABIdoRA",
+  apiKey: "AIzaSyDBbJ132Nypi8r326QCkxeKc9BKLI9KR-o",
   authDomain: "luminan-store.firebaseapp.com",
   projectId: "luminan-store",
   storageBucket: "luminan-store.firebasestorage.app",
