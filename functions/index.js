@@ -3,11 +3,11 @@ const axios = require('axios');
 
 exports.notificarTelegram = onDocumentCreated("mensajes/{docId}", async (event) => {
     const nuevoDato = event.data.data();
-    
+
     // AQUÍ VAN TUS DATOS, NO LOS OLVIDES
-    const token = '8774952289:AAFFa5lDsQFB7Br57lnSRGVtA_x4E5fFTK4'; 
+    const token = '8774952289:AAFFa5lDsQFB7Br57lnSRGVtA_x4E5fFTK4';
     const chatId = '6905944815';
-    
+
     let fechaStr = "No disponible";
     if (nuevoDato.fecha) {
         // Verificar si es un Timestamp de Firestore y tiene el método toDate
