@@ -12,7 +12,7 @@ exports.notificarTelegram = onDocumentCreated("mensajes/{docId}", async (event) 
     if (nuevoDato.fecha) {
         // Verificar si es un Timestamp de Firestore y tiene el método toDate
         if (typeof nuevoDato.fecha.toDate === 'function') {
-            fechaStr = nuevoDato.fecha.toDate().toLocaleString('es-MX');
+            fechaStr = nuevoDato.fecha.toDate().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' });
         } else {
             // Si por alguna razón es solo un string u otro formato
             fechaStr = nuevoDato.fecha.toString();
