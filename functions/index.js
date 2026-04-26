@@ -8,7 +8,18 @@ exports.notificarTelegram = onDocumentCreated("mensajes/{docId}", async (event) 
     const token = '8774952289:AAFFa5lDsQFB7Br57lnSRGVtA_x4E5fFTK4'; 
     const chatId = '6905944815';
     
-    const texto = `🔔 ¡Nuevo mensaje en Luminan!\n\nDe: ${nuevoDato.nombre}\nDice: ${nuevoDato.mensaje}\n\nDatos Adicionales:\n\nCorreo: ${nuevoDato.correo}\nFecha: ${nuevoDato.fecha}`;
+    let fechaStr = "No disponible";
+    if (nuevoDato.fecha) {
+        // Verificar si es un Timestamp de Firestore y tiene el método toDate
+        if (typeof nuevoDato.fecha.toDate === 'function') {
+            fechaStr = nuevoDato.fecha.toDate().toLocaleString('es-MX');
+        } else {
+            // Si por alguna razón es solo un string u otro formato
+            fechaStr = nuevoDato.fecha.toString();
+        }
+    }
+
+    const texto = `🔔 ¡Nuevo mensaje en Luminan!\n\nDe: ${nuevoDato.nombre}\nDice: ${nuevoDato.mensaje}\n\nDatos Adicionales:\n\nCorreo: ${nuevoDato.correo}\nFecha: ${fechaStr}`;
 
     try {
         await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
