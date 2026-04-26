@@ -21,8 +21,17 @@ const visitasRef = doc(db, "estadisticas", "visitas");
 // Función para incrementar el contador de visitas
 async function registrarVisita() {
     try {
+        // Generar la fecha y hora en la zona horaria UTC-6
+        const fechaFormateada = new Date().toLocaleString('es-ES', {
+            timeZone: 'America/Costa_Rica', // Zona horaria que siempre es UTC-6
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit',
+            hour12: true
+        }) + ' (UTC-6)';
+
         await updateDoc(visitasRef, {
-            contador: increment(1)
+            contador: increment(1),
+            ultimaVisita: fechaFormateada
         });
         console.log("Visita al Easter Egg registrada!");
     } catch (error) {
