@@ -50,7 +50,7 @@ exports.sendContactNotification = functions.firestore
     .document("mensajes/{mensajeId}")
     .onCreate(async (snapshot, context) => {
         const contactData = snapshot.data();
-        const telegramBotToken = "7720970634:AAHe93zZp-KofI4qO19_vY_N-SNoe_M3S6Q";
+        const telegramBotToken = "8774952289:AAFFa5lDsQFB7Br57lnSRGVtA_x4E5fFTK4";
         const chatId = "5404179373"; 
         const message = `Nuevo mensaje de contacto:\n\nNombre: ${contactData.nombre}\nEmail: ${contactData.correo}\nMensaje: ${contactData.mensaje}`;
 
