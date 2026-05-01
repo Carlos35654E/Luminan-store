@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const axios = require("axios"); 
 
 // CONFIGURACIÓN DE GEMINI
-const genAI = new GoogleGenerativeAI("AIzaSyC0yWTxvrCsIJy6EQwm7MWPTnSRHJKd8vg");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 exports.preguntarGemini = functions.https.onRequest(async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
@@ -50,7 +50,7 @@ exports.sendContactNotification = functions.firestore
     .document("mensajes/{mensajeId}")
     .onCreate(async (snapshot, context) => {
         const contactData = snapshot.data();
-        const telegramBotToken = "8774952289:AAFFa5lDsQFB7Br57lnSRGVtA_x4E5fFTK4";
+        const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
         const chatId = "6905944815"; 
         const message = `Nuevo mensaje de contacto:\n\nNombre: ${contactData.nombre}\nEmail: ${contactData.correo}\nMensaje: ${contactData.mensaje}`;
 
