@@ -17,7 +17,7 @@ exports.preguntarGemini = functions.https.onRequest(async (req, res) => {
     const prompt = req.body.prompt || "Hola";
     try {
         const model = genAI.getGenerativeModel({ 
-            model: "gemini-flash-latest",
+            model: "gemma-3-27b-it",
             systemInstruction: `Eres Luminan AI, el asistente virtual de la marca de ropa "Luminan Store". 
             Tu objetivo es ayudar a los clientes con un tono elegante, moderno, conciso y amable.
             
